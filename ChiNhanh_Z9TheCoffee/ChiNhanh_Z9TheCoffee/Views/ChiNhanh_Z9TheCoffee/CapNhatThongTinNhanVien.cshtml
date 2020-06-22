@@ -1,0 +1,71 @@
+﻿@model ChiNhanh_Z9TheCoffee.Models.QuanLy
+@{
+    ViewBag.Title = "CapNhatThongTinNhanVien";
+    Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cập nhật thông tin nhân viên</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("CapNhatThongTinNhanVien", "ChiNhanh_Z9TheCoffee", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div style="overflow-x:auto;">
+            <table style="border:solid;text-align:center" class="responsive wrap">
+                <tr style="text-align:center; font-weight:bold;border:solid">
+                    <td>Ngày Vào Làm</td>
+                    <td>Mã NV</td>
+                    <td>Tên Chi Nhánh</td>
+                    <td>Tên Nhân Viên</td>
+                    <td>Năm Sinh</td>
+                    <td>Số Điện Thoại</td>
+                    <td>Đã Nghỉ</td>
+                </tr>
+                <tr style="text-align:center; font-weight:bold;border:solid">
+                    <td style="border:solid">    
+                                          
+                        @Html.EditorFor(model => model.NgayVaoLam)
+                        @Html.ValidationMessageFor(model => model.NgayVaoLam)
+                    </td>
+                    <td style="border:solid">
+                        @Html.DisplayFor(model => model.MaNV)
+                    </td>
+                    <td style="border:solid">
+                       @Html.DisplayFor(model => model.ChiNhanh.TenChiNhanh)
+                    </td>
+                    <td style="border:solid">
+                        @Html.EditorFor(model => model.TenNhanVien, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenNhanVien, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="border:solid;width:60px">
+                        @Html.EditorFor(model => model.NamSinh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NamSinh, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="border:solid;width:150px">
+                        @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="border:solid">
+                        @Html.EditorFor(model => model.DaNghi, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DaNghi, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+            </table><br />
+            <div style="text-align: center"><button class="btn primary-btn" type="submit">Lưu</button></div>
+        </div>
+    }
+</body>

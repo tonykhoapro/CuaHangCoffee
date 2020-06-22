@@ -1,0 +1,59 @@
+﻿
+@using Z9TheCoffee.Models;
+@model  List<Z9TheCoffee.Models.LichSuMuaHang>
+@{
+    ViewBag.Title = "Lịch Sử Mua Hàng";
+    Layout = "~/Views/Shared/_LayoutGioHang.cshtml";
+}
+<h2 style="text-align:center;font-size:25px;color:orange;font-weight:bold">Thông Tin Khách Hàng</h2>
+@{
+    KhachHang kh = (KhachHang)Session["Email"];
+}
+<table class="wrap" style="font-size:20px">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <tr style="height:40px;color:white;text-align:center">
+            <td style="text-align:center"> Họ Tên Khách Hàng: <span style="font-weight:bold">@kh.TenKH</span> </td>
+        </tr>
+        <tr style="height:40px;color:white;text-align:center">
+            <td style="text-align:center"> Email: <span style="font-weight:bold">@kh.Email</span></td>
+        </tr>
+        <tr style="height:40px;color:white;text-align:center">
+            <td style="text-align:center"> Mật Khẩu: <span style="font-weight:bold">@kh.MatKhau</span></td>
+        </tr>
+    }
+</table>
+
+<div class="wrap" style="border-radius:20px;background: rgb(173,117,82);
+background: radial-gradient(circle, rgba(173,117,82,0.6541783095073967) 24%, rgba(217,208,208,0.5701446960620186) 80%)">
+    <br />
+    <h2 style="text-align:center;font-size:25px;color:orange;font-weight:bold">Lịch Sử Mua Hàng</h2><br />
+<table class="wrap" border="1" style="border:solid;font-size:20px">
+    <tr style="text-align:center; font-weight:bold;border:solid;font-size:20px;color:white">
+        <th>Ngày Đặt Hàng</th>
+        <th>Tên Đồ Uống</th>
+        <th>SL Mua</th>
+        <th>Đơn Giá</th>
+    </tr>
+    @foreach (var item in Model)
+            {
+        <tr style="text-align:center;border:solid;color:white">
+            <td>
+                @String.Format("{0:dd/MM/yyyy}", item.NgayDat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenDoUong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SL_Mua)
+            </td>
+            <td>
+                @String.Format("{0:0,0}", item.DonGia) VNĐ
+            </td>
+        </tr>
+    }
+</table>
+    <br />
+</div>
+<br /><br /><br />

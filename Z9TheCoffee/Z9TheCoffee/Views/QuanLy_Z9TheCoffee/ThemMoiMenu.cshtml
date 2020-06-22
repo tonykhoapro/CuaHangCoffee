@@ -1,0 +1,63 @@
+﻿@model Z9TheCoffee.Models.ChiTietDoUong
+
+@{
+    ViewBag.Title = "CapNhatMenu";
+    Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cập nhật Menu</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("ThemMoiMenu", "QuanLy_Z9TheCoffee", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div style="overflow-x:auto;">
+            <table style="border:solid;text-align:center" class="responsive wrap">
+                <tr style="text-align:center; font-weight:bold;border:solid">
+                    <td>Ngày Cập Nhật</td>
+                    <td>Tên Loại</td>
+                    <td>Tên Đồ Uống</td>
+                    <td>Giá Bán</td>
+                    <td>Ảnh Bìa</td>
+                    <td>Trạng Thái</td>
+                </tr>
+                <tr style="text-align:center; font-weight:bold;border:solid">
+                    <td style="border:solid;width:80px">
+                        <input type="date" required name="NgayCapNhat" />
+                    </td>
+                    <td style="border:solid">@Html.DropDownList("MaLoai", ViewBag.MaLoai as SelectList)</td>
+                    <td style="border:solid">
+                        @Html.EditorFor(model => model.TenDoUong, new { htmlAttributes = new { @class = "form-control" ,@required = "required"} })
+                        @Html.ValidationMessageFor(model => model.TenDoUong, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="border:solid;width:90px">
+                        @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                        @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="border:solid;width:60px">                        
+                        <input type="file" name="fileUpload" />
+                    </td>
+                    <td style="border:solid;width:100px">
+                        @Html.EditorFor(model => model.TrangThai, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table><br />
+            <div style="text-align: center"><button class="btn primary-btn" type="submit">Thêm</button></div>
+        </div>
+    }
+</body>

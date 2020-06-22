@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Z9TheCoffee.Models.ChiTietDoUong>
+<style>
+    .button2 {
+        color: white;
+    }
+
+        .button2:hover {
+            color: orange;
+        }
+
+    .zoom {
+        transition: transform .2s;
+    }
+
+        .zoom:hover { 
+            -ms-transform: scale(2,2); /* IE 9 */
+            -webkit-transform: scale(2,2); /* Safari 3-8 */
+            transform: scale(1.2);
+        }
+</style>
+<div class="row">
+    @foreach (var douong in Model)
+    {
+        <div class="col-lg-4 col-xs-4">
+            <div class="single-menu" style="background-color:transparent;color:white;font-family:'UVN Saigon'">
+                <div class="row">
+                    <div class="col-md-4 col-xs-4 col-sm-4">
+                        <div class="title-div justify-content-between d-flex">
+                            <img src="~/HinhSanPham/@douong.AnhBia" height="100" width="150" class="center zoom" />
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-xs-8 col-sm-8" style="text-align:center">
+                        <h3 style="color:white"><a class="button2">@douong.TenDoUong</a></h3>
+                        <p style="color:white">@String.Format("{0:0,0}", douong.GiaBan) VNĐ</p><br />
+                        <a class="button2" href="@Url.Action("ThemGioHang", "GioHang", new { @iMaDoUong= @douong.MaDoUong,@strURL= Request.Url.ToString()})"><img src="~/img/add.png" />Chọn</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

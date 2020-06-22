@@ -1,0 +1,52 @@
+﻿@model List<ChiNhanh_Z9TheCoffee.Models.listDemDonDatHang>
+@{
+    ViewBag.Title = "Thống Kê Đơn Đặt Hàng";
+    Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Thống Kê Đơn Đặt Hàng</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>    
+    <!--Tìm kiếm-->
+    <div id="TuNgay" style="margin-left:50px">        
+        @using (Html.BeginForm("LocThongKeDatHang", "ChiNhanh_Z9TheCoffee", new { id = Session["MaChiNhanh"] }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div id="Nam" class="form-horizontal">               
+                Xem theo năm <input type="number" style="width:90px" min="2016" max="2050"  placeholder="nhập năm..." name="Nam" required />
+                <input type="submit" style="width:90px" alt="Submit" value="Lọc" width="32" height="32" autocomplete="off">
+            </div>
+        }     
+    </div><br />
+    <!--Tìm kiếm-->
+    <div style="overflow-x:auto;">
+        <table style="border:solid;text-align:center" class="responsive wrap">
+            <tr style="text-align:center; font-weight:bold;border:solid">
+                <td>Tháng</td>
+                <td>Số Lượng Đơn Đặt Hàng</td>              
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr style="text-align:center;border:solid">                   
+                    <td style="border:solid">@Html.DisplayFor(modelItem => item.Thang)</td>
+                    <td style="border:solid">@Html.DisplayFor(modelItem => item.DemSoLuong)</td>                                    
+                </tr>
+            }
+        </table>
+    </div>   
+</body>
+</html>

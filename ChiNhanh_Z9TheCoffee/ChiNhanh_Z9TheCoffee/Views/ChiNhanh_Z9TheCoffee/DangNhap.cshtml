@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Đăng Nhập</title>
+    <link rel="shortcut icon" href="~/img/logo_website.png">
+    <style>
+        .wrap {
+            width: 90%;
+            margin: 0 auto;
+            -moz-transition: all .2s linear;
+            -webkit-transition: all .2s linear;
+            -o-transition: all .2s linear;
+        }
+    </style>
+</head>
+<body style="background-image: url('../../img/header-bg.jpg');">
+    <h3 style="text-align:center; color:black;font-size:40px; color:white;font-weight:bold"> Quản Lý Chi Nhánh</h3>
+    <h5 style="text-align:center; color:black;font-size:40px; color:white;font-weight:bold"> Đăng Nhập</h5>
+    <h4 style="color:red; text-align:center">@ViewBag.ThongBao </h4>
+    <br />
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div class="wrap" style="font-style:italic;font-size:20px; text-align:center;color:white">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-2 text-white text-center" style="font-weight:bold;font-size:20px">Số Điện Thoại:</label>
+                    <div class="col-sm-12">
+                        <input type="password" autocomplete="off" required class="form-control" name="SDT" style="text-align:center;height:30px;font-size:20px">
+                    </div>
+                </div><br />
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-12">
+                        <button type="submit" class="btn btn-primary" style="border-color: chocolate;border-style: solid;border-radius: 15px;font-size:40px; margin:0 auto;display: flex">Vào</button>
+                    </div>
+                </div>
+            </form>
+        </div><br />
+    }
+</body>
+</html>

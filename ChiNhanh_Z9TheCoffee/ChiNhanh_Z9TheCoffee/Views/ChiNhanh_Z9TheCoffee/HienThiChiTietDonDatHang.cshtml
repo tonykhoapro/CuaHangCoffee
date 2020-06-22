@@ -1,0 +1,67 @@
+﻿@using ChiNhanh_Z9TheCoffee.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<ChiNhanh_Z9TheCoffee.Models.listChiTietDonDatHang>
+@{
+    ViewBag.Title = "Chi Tiết Đơn Hàng";
+    Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Chi Tiết Đơn Hàng</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div style="overflow-x:auto;">
+        <table style="border:solid;text-align:center" class="responsive wrap">
+            <tr style="text-align:center; font-weight:bold;border:solid">
+                <td>Mã Đơn Hàng</td>
+                <td>Ngày Đặt</td>
+                <td>Giờ Đặt</td>
+                <td>Tên Khách Hàng</td>
+                <td>Tên Quận</td>
+                <td>Đại Chỉ Giao Hàng</td>
+                <td>Điện Thoại Khách Hàng</td>
+                <td>Tên Đồ Uống</td>
+                <td>Sl Mua</td>
+                <td>Đơn Giá</td>
+                <td style="border-right:solid">Thành Tiền</td>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr style="text-align:center;border:solid">
+                    <td style="border:solid">@Html.DisplayFor(modelItem => item.MaDonHang)</td>
+                    <td style="border:solid">@String.Format("{0:dd/MM/yyyy}", item.NgayDat)</td>
+                    <td style="border:solid">@String.Format("{0:t}", item.GioDat)</td>
+                    <td style="border:solid">@Html.DisplayFor(modelItem => item.TenKhachHang)</td>
+                    <td style="border:solid">@Html.DisplayFor(modelItem => item.TenQuan)</td>
+                    <td style="border:solid">@Html.DisplayFor(modelItem => item.DiaChiGiao)</td>
+                    <td style="border:solid">@Html.DisplayFor(modelItem => item.DienThoai_KH)</td>
+                    <td style="border:solid">@Html.DisplayFor(modelItem => item.TenDoUong)</td>
+                    <td style="border:solid">@Html.DisplayFor(modelItem => item.SlMua)</td>
+                    <td style="border:solid">@String.Format("{0:0,0}", item.DonGia)</td>
+                    <td style="border:solid">@String.Format("{0:0,0}", item.ThanhTien)</td>                
+                </tr>
+            }
+            <tr>
+                <td colspan="6" style="border-right:solid">Tổng Số Lượng Mua: @ViewBag.TongSoLuongMua</td>
+                <td colspan="6" style="border-right:solid">Tổng Tiền: @String.Format("{0:0,0}", ViewBag.TongTien) VNĐ</td>
+            </tr>
+        </table>
+    </div>
+    <div class="pagination">
+        @Html.PagedListPager(Model, page => Url.Action("HienThiChiTietDonDatHang", new { page = page }))
+    </div>
+</body>
+</html>

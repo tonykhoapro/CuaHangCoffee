@@ -1,0 +1,39 @@
+﻿@using Z9TheCoffee.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<section class="menu-area section-gap" id="coffee">
+    <div class="container ">
+        <div class="row d-flex justify-content-center ">
+            <div class="menu-content pb-60 col-lg-10 text-white ">
+                <div class="title text-center">
+                    <h1 class="mb-10 text-white " style="font-family:'UVN Saigon'">Bạn Thích Loại Nào !</h1>
+                </div>
+            </div>
+        </div>
+        <section id="CaPheViet">
+            <h2 class="text-center text-white" style="background: rgb(173,117,82);
+background: radial-gradient(circle, rgba(173,117,82,0.6541783095073967) 24%, rgba(217,208,208,0.5701446960620186) 80%);font-family:'UVN Saigon'">
+                <br />- Cà Phê Việt -
+            </h2>
+            @Html.Action("CaPheViet", "Z9TheCoffee");
+        </section>
+        <section id="CaPheY">
+            <h2 class="text-center text-white" style="background: rgb(173,117,82);
+background: radial-gradient(circle, rgba(173,117,82,0.6541783095073967) 24%, rgba(217,208,208,0.5701446960620186) 80%);font-family:'UVN Saigon'">
+                <br />- Cà Phê Ý -
+            </h2>
+            @Html.Action("CaPheY", "Z9TheCoffee");
+        </section>
+        <section id="Tra">
+            <h2 class="text-center text-white wow" style="background: rgb(173,117,82);
+background: radial-gradient(circle, rgba(173,117,82,0.6541783095073967) 24%, rgba(217,208,208,0.5701446960620186) 80%);font-family:'UVN Saigon'">
+                <br />- Trà -
+            </h2>
+            @Html.Action("Tra", "Z9TheCoffee");
+        </section>
+    </div>
+</section>
+

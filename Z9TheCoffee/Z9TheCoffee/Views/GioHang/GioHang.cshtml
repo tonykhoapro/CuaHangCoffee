@@ -1,0 +1,46 @@
+﻿@using Z9TheCoffee.Models;
+@model List<GioHang>
+@{
+    ViewBag.Title = "Giỏ Hàng";
+    Layout = "~/Views/Shared/_LayoutGioHang.cshtml";
+}
+<h2 style="text-align:center; font-size:20px;font-weight:bold;color:white">Giỏ Hàng Của Bạn</h2><br />
+<table style="border:solid;text-align:center" class="responsive wrap">
+    <tr style="text-align:center; font-weight:bold;border:solid;color:white ">
+        <td></td>
+        <td>Tên Đồ Uống</td>
+        <td>Ảnh</td>
+        <td>SL Mua</td>
+        <td>Đơn Giá</td>
+        <td style="border-right:solid">Thành Tiền</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr style="text-align:center; font-weight:bold;border:solid;color:white">
+            <td style="border:solid"><div class="mycolor"><img src="~/img/Close-2-icon.png" />@Html.ActionLink("Xóa", "XoaGioHang", new { @iMaDoUong = item.iMaDoUong })</div></td>
+            <td style="border:solid">@item.sTenDoUong</td>
+            <td style="border:solid"><img src="~/HinhSanPham/@item.sAnhBia " width="30" height="40" class="center zoom"></td>
+            @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @iMaDoUong = item.iMaDoUong }))
+                {
+                <td style="border:solid">
+                    <input type="number" min="1" max="50" name="txtSlMua" value="@item.iSlMua" style="height:30px;width:43px;font-size:20px" />
+                    <input type="submit" value="Lưu" style="font-size:15px">
+                </td>
+                    <td style="border:solid">@String.Format("{0:0,0}", item.dGiaBan) VNĐ</td>
+                    <td style="border:solid">@String.Format("{0:0,0}", item.dThanhTien) VNĐ</td>
+            }
+        </tr>
+    }
+    <tr style="font-weight: bold; text-align:center;border:solid;color:white">
+        <td colspan="4">Tổng Số Lượng : @ViewBag.TongSoLuong</td>
+        <td style="border-right:solid" colspan="2">Tổng Tiền: @String.Format("{0:0,0}", ViewBag.TongTien) VNĐ</td>
+    </tr>
+    <tr style="text-align:center;font-weight: bold;border:solid;color:white">
+        <td colspan="8">
+            <div class="mycolor">@Html.ActionLink("Xóa Giỏ Hàng", "XoaTatCaGioHang")</div>
+        </td>
+    </tr>
+</table><br />
+
+
+<div style="text-align: center"><button class="btn primary-btn">@Html.ActionLink("Đặt Hàng", "DatHang", "GioHang")</button></div><br /><br /><br /><br /><br />

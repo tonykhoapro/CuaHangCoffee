@@ -1,0 +1,101 @@
+﻿@model Z9TheCoffee.Models.DatBan
+
+@{
+    ViewBag.Title = "DatBan";
+    Layout = "~/Views/Shared/_LayoutChung.cshtml";
+}
+
+<section class="section-gap" style="background: rgb(173,117,82);
+background: radial-gradient(circle, rgba(173,117,82,0.6541783095073967) 24%, rgba(217,208,208,0.5701446960620186) 80%);color:white;font-family:'UVN Saigon'" id="datcho">
+    <div class="container wow jackInTheBox" data-wow-delay=".2s">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-60 col-lg-10">
+                <div class="title text-center ">
+                    <h1 style="color:white">- Đặt bàn -</h1>
+                </div>
+            </div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.MaDatBan)
+                <div class="row">
+                    <div class="col-md-4 col-xs-4 col-sm-4">
+                        <label class="wrap text-white text-center" style="font-weight:bold;font-size:20px">Chi nhánh</label>
+                        <select class="form-control" name="MaChiNhanh" required>
+                            @{
+                                foreach (var chinhanh in ViewBag.MaChiNhanh as SelectList)
+                                {
+                                    <option value="@chinhanh.Value">@chinhanh.Text</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4">
+                        <label class="wrap text-white text-center" style="font-weight:bold;font-size:20px">Ngày</label>
+                        <div class="title-div justify-content-between d-flex">
+                            <input id="userdate" type="date" class="form-control" style="text-align:center" name="NgayDatBan" onchange="TDate()" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4">
+                        <label class="wrap text-white text-center" style="font-weight:bold;font-size:20px">Lúc</label>
+                        <div class="title-div justify-content-between d-flex">
+                            <select class="form-control" name="GioDatBan" required>
+                                <option>19:00</option>
+                                <option>19:30</option>
+                                <option>20:00</option>
+                                <option>20:30</option>
+                                <option>21:00</option>
+                                <option>21:30</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4">
+                        <label class="wrap text-white text-center" style="font-weight:bold;font-size:20px">Số lượng người</label>
+                        <div class="title-div justify-content-between d-flex">
+                            <select class="form-control" name="SoLuongNguoi" required>
+                                <option>2</option>
+                                <option>4</option>
+                                <option>6</option>
+                                <option>8</option>
+                                <option>10</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4">
+                        <label class="wrap text-white text-center" style="font-weight:bold;font-size:20px">Tên khách hàng</label>
+                        <div class="title-div justify-content-between d-flex">
+                            <input type="text" class="form-control" style="text-align:center" name="TenKhachDatBan" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-4 col-sm-4">
+                        <label class="wrap text-white text-center" style="font-weight:bold;font-size:20px">Điện thoại liên lạc</label>
+                        <div class="title-div justify-content-between d-flex">
+                            <input type="tel" class="form-control" style="text-align:center" name="DienThoaiDatBan" required>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-offset-2 col-sm-12">
+                        <button type="submit" class="btn primary-btn" style="margin:0 auto;display: flex" >Xác nhận</button>
+                    </div>
+                </div>
+            </div>
+}
+    </div>
+    <script>
+        function TDate() {
+            var UserDate = document.getElementById("userdate").value;
+            var ToDate = new Date();
+
+            if (new Date(UserDate).getTime() <= ToDate.getTime()) {
+                alert("Ngày đặt phải ở tương lai !");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</section>

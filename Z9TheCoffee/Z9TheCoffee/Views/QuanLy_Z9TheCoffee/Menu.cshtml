@@ -1,0 +1,89 @@
+﻿@using Z9TheCoffee.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Z9TheCoffee.Models.listMenu>
+@{
+    ViewBag.Title = "Quản Lý Menu";
+    Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
+}
+<style>
+    .zoom {
+        transition: transform 1.2s;
+    }
+
+        .zoom:hover {
+            -ms-transform: scale(2,2); /* IE 9 */
+            -webkit-transform: scale(2,2); /* Safari 3-8 */
+            transform: scale(2);
+        }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+<br />
+@Html.ActionLink("Xem Trang Chủ","Index","Z9TheCoffee",new { target = "_blank" })
+<h2>Thông Tin Sản Phẩm</h2>
+<div style="overflow-x:auto;">
+    <table style="text-align:center" class="table responsive wrap" border="1">
+        <tr style="text-align:center; font-weight:bold">
+            <td>Ngày Cập Nhật</td>
+            <td>Tên Loại</td>
+            <td>Mã Sản Phẩm</td>
+            <td>Tên</td>
+            <td>Giá</td>
+            <td>Ảnh</td>
+            <td>Trạng Thái</td>
+            <td>Tùy Chọn</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @String.Format("{0:dd/MM/yyyy}", item.NgayCapNhat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenLoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaDoUong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenDoUong)
+                </td>
+                <td>
+                    @String.Format("{0:0,0}", item.GiaBan) VNĐ
+                </td>
+                <td>
+                    <img src="@Url.Content("~/HinhSanPham/" + item.AnhBia)" width="50" height="60" class="zoom" />
+                </td>
+                <td>@Html.CheckBoxFor(modelItem => item.TrangThai)</td>
+                <td>
+                    @Html.ActionLink("Cập nhật", "CapNhatMenu", new { id = item.MaDoUong })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<!--Tao lien ket các trang-->
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Menu", new { page = page }))
+    <p style="font-size:20px">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</p>
+</div>
+<style>
+    .MenuTrang li {
+        color: white;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 0.5px solid;
+        font-size: 18px;
+</style>

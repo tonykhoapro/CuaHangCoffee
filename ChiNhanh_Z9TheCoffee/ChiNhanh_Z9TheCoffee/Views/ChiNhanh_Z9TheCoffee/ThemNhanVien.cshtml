@@ -1,0 +1,35 @@
+﻿@model ChiNhanh_Z9TheCoffee.Models.QuanLy
+@{
+    ViewBag.Title = "ThemNhanVien";
+    Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
+}
+@using (Html.BeginForm("ThemNhanVien", "ChiNhanh_Z9TheCoffee", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div style="overflow-x:auto;">
+        <table style="border:solid;text-align:center" class="responsive wrap">
+            <tr style="text-align:center; font-weight:bold;border:solid">
+                <td>Ngày Vào Làm</td>               
+                <td>Tên Nhân Viên</td>
+                <td>Năm Sinh</td>
+                <td>Số Điện Thoại</td>                  
+            </tr>
+            <tr style="text-align:center; font-weight:bold;border:solid">
+                <td style="border:solid">
+                    <input type="date" name="NgayVaoLam" autocomplete="off" required/>
+                </td>              
+                <td style="border:solid">
+                    <input type="text" name="TenNhanVien" autocomplete="off" required/>                    
+                </td>
+                <td style="border:solid">
+                    <input type="text" name="NamSinh" autocomplete="off" required />                   
+                </td>
+                <td style="border:solid">
+                    <input type="tel" name="SDT" autocomplete="off" required />                   
+                </td>               
+            </tr>
+        </table><br />
+        <div style="text-align: center"><button class="btn primary-btn" type="submit">Lưu</button></div>
+    </div>
+}

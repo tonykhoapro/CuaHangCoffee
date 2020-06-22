@@ -1,0 +1,68 @@
+﻿@using ChiNhanh_Z9TheCoffee.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<ChiNhanh_Z9TheCoffee.Models.listDonDatHang_DaGiao>
+@{
+    ViewBag.Title = "Đơn Đặt Hàng Đã Giao";
+    Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>HienThiDonDatHang</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div style="overflow-x:auto;">
+        <table style="border:solid;text-align:center" class="responsive wrap">
+            <tr style="text-align:center; font-weight:bold;border:solid">
+                <td>Mã Đơn Hàng</td>
+                <td>Ngày Đặt</td>
+                <td>Giờ Đặt</td>
+                <td>Tên Nhân Viên Giao</td>
+                <td>Tên Khách Hàng</td>
+                <td>Tên Quận</td>
+                <td>Đại Chỉ Giao Hàng</td>
+                <td>Điện Thoại KH</td>
+                <td>Đã Thanh Toán</td>
+                <td>Tùy Chọn</td>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr style="text-align:center;border:solid">
+                    <td style="border:solid">@Html.DisplayFor(modelItem => item.MaDonHang)</td>
+                    <td style="border:solid">@String.Format("{0:dd/MM/yyyy}", item.NgayDat)</td>
+                    <td style="border:solid">@String.Format("{0:t}", item.GioDat)</td>
+                    <td style="border:solid">@Html.DisplayFor(modelItem => item.TenNhanVienGiao)</td>
+                    <td style="border:solid">@Html.DisplayFor(modelItem => item.TenKhachHang)</td>
+                    <td style="border:solid">@Html.DisplayFor(modelItem => item.TenQuan)</td>
+                    <td style="border:solid">@Html.DisplayFor(modelItem => item.DiaChiGiao)</td>
+                    <td style="border:solid">@Html.DisplayFor(modelItem => item.DienThoai_KH)</td>
+                    <td style="border:solid" id="enable">@Html.CheckBoxFor(modelItem => item.DaThanhToan)</td>
+                    <td>
+                        @Html.ActionLink("Chi Tiết", "HienThiChiTietDonDatHang", new { iddonhang = item.MaDonHang })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="pagination">
+        @Html.PagedListPager(Model, page => Url.Action("HienThiDonDatHang_DaGiao", new { page = page }))
+    </div>
+    <script>
+function myCheck() {
+    document.getElementById("enable").disabled = true;
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿@using ChiNhanh_Z9TheCoffee.Models;
+@model List<ChiNhanh_Z9TheCoffee.Models.listCapNhatDonDatBan>
+@{
+    ViewBag.Title = "Đơn Đặt Bàn";
+    Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Hiển thị đơn đặt bàn</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("CapNhatDonDatBan", "ChiNhanh_Z9TheCoffee", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div style="overflow-x:auto;">
+            <table style="border:solid;text-align:center" class="responsive wrap">
+                <tr style="text-align:center; font-weight:bold;border:solid">
+                    <td>Đã Xong</td>
+                    <td>Mã Đặt Bàn</td>
+                    <td>Tên Chi Nhánh Đặt</td>
+                    <td>Ngày Gửi</td>
+                    <td>Ngày Đặt Bàn</td>
+                    <td>Giờ Đặt Bàn</td>
+                    <td>Số Lượng Người</td>
+                    <td>Tên Khách Đặt</td>
+                    <td>Điện Thoại Liên Lạc</td>                   
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr style="text-align:center;border:solid">
+                        <td style="border:solid"><input type="checkbox" name="DaXong" value="True" /></td>
+                        <td style="border:solid">@Html.DisplayFor(modelItem => item.MaDatBan)</td>
+                        <td style="border:solid">@Html.DisplayFor(modelItem => item.TenChiNhanh)</td>
+                        <td style="border:solid">@String.Format("{0:dd/MM/yyyy}", item.NgayGui)</td>
+                        <td style="border:solid">@String.Format("{0:dd/MM/yyyy}", item.NgayDatBan)</td>
+                        <td style="border:solid">@Html.DisplayFor(modelItem => item.GioDatBan)</td>
+                        <td style="border:solid">@Html.DisplayFor(modelItem => item.SoLuongNguoi)</td>
+                        <td style="border:solid">@Html.DisplayFor(modelItem => item.TenKhachDatBan)</td>
+                        <td style="border:solid">@Html.DisplayFor(modelItem => item.DienThoaiDatBan)</td>                        
+                    </tr>
+                }
+            </table><br />
+            <div style="text-align: center"><button class="btn primary-btn" type="submit">Lưu</button></div>
+        </div>
+    }
+</body>
+</html>

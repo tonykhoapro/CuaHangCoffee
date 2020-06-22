@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Đăng Kí";
+    Layout = "~/Views/Shared/_LayoutGioHang.cshtml";
+}
+
+<section class="banner-area" id="">
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-start">
+            <div class="banner-content col-lg-12" style="font-family:'UVN Saigon'">
+                <h2 style="text-align:center; color:white;font-size:30px;font-family:'UVN Saigon'">Quyền Lợi Thành Viên</h2><br />
+                <p style="text-align:center; color:white;font-size:20px"><img src="~/img/tick.png" />Nhận được mail về các chương trình khuyến mãi !</p>
+                <p style="text-align:center; color:white;font-size:20px"><img src="~/img/tick.png" />Giúp chúng tôi hỗ trợ bạn tốt hơn !</p>
+                <p style="text-align:center; color:white;font-size:20px"><img src="~/img/tick.png" />Tích điểm nhận discount !</p>
+            </div>
+        </div>
+    </div>
+</section>
+<h2 style="text-align:center; color:white;font-size:40px;font-weight:bold;font-family:'UVN Saigon'">Thông Tin Của Bạn</h2>
+<h4 style="color:red; text-align:center;font-size:20px">@ViewBag.ThongBao</h4>
+<h4 style="color:red; text-align:center;font-size:15px">@ViewBag.Trung</h4>
+<br />
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div class="container wrap" style="font-family:'UVN Saigon'">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-2 text-white text-center" style="font-weight:bold;font-size:20px">Bạn Tên Gì:</label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" required autocomplete="off" style="text-align:center;" name="TenKH">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2 text-white text-center" style="font-weight:bold;font-size:20px">Email:</label>
+                <div class="col-sm-12">
+                    <input type="email" class="form-control" style="text-align:center;" name="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2 text-white text-center" style="font-weight:bold;font-size:20px">Mật Khẩu Z9TheCoffee:</label>
+                <div class="col-sm-12">
+                    <input type="password" class="form-control" name="MatKhau">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-12">
+                    <button type="submit" class="btn primary-btn" style="margin:0 auto;display: flex">Đăng Kí</button>
+                </div>
+            </div>
+        </form>
+    </div>
+        <br />
+        <div style="font-style:italic;font-size:20px; text-align:center;color:white">Đã có tài khoản ?<br /><br /><span class="mycolor"><a href="@Url.Action("DangNhap", "NguoiDung")">Đăng Nhập</a></span> </div> <br /><br />
+}

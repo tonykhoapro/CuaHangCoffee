@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="~/img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="codepixer">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>Z9 The Coffee</title>
+    <link rel="shortcut icon" href="~/img/logo_website.png" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!--
+    CSS
+    ============================================= -->
+    <link rel="stylesheet" href="~/Vendor/css/linearicons.css" />
+    <link rel="stylesheet" href="~/Vendor/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Vendor/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Vendor/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Vendor/css/nice-select.css">
+    <link rel="stylesheet" href="~/Vendor/css/animate.min.css">
+    <link rel="stylesheet" href="~/Vendor/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/Vendor/css/main.css">
+
+</head>
+<body style="background-image: url('../../img/header-bg.jpg'); background-repeat: no-repeat;background-position: center;background-attachment: fixed;  ">
+    <header id="header" id="home" style="font-family:'Arial'">
+        <div class="header-top">
+            <div class="container">
+                <div class="row justify-content-end">
+                    <div class="col-lg-8 col-sm-4 col-8 header-top-right no-padding">
+                        <ul>
+                            <li>
+                                Thời gian phục vụ: 7:00 đến 23:00
+                            </li>
+                            <li>
+                                Địa chỉ: 465A, Điện Biên Phủ,Q.Bình Thạnh, TpHCM.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row align-items-center justify-content-between d-flex">
+                <div id="logo">
+                    <a href="@Url.Action("Index", "Z9TheCoffee")"><img src="~/img/logo_1.png" alt="" title="Trang Chủ" /></a>&nbsp;
+                    <span class="wrap mycolor ">
+                        @{Html.RenderAction("GioHangPartial", "GioHang");}
+                    </span>
+                </div>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li class="menu-active"><a href="@Url.Action("Index", "Z9TheCoffee")">Trang Chủ</a></li>
+                        <li><a href="@Url.Action("Index", "Z9TheCoffee")">Giới Thiệu</a></li>
+                        <li class="menu-has-children">
+                            <a href="@Url.Action("Index", "Z9TheCoffee")">Menu</a>
+                            <ul>
+                                <li><a href="@Url.Action("Index", "Z9TheCoffee")">Cà Phê Việt</a></li>
+                                <li><a href="@Url.Action("Index", "Z9TheCoffee")">Cà Phê Ý</a></li>
+                                <li><a href="@Url.Action("Index", "Z9TheCoffee")">Trà</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="@Url.Action("DatBan", "NguoiDung")">Đặt bàn</a></li>
+                        <li class="menu-has-children">
+                            <a class="text-white">Tài Khoản</a>
+                            <ul>
+                                <li><a href="@Url.Action("DangNhap","NguoiDung")">Đăng Nhập</a></li>
+                                <li><a href="@Url.Action("DangKi","NguoiDung")">Đăng Kí</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header><!-- #header -->
+    <!-- start banner Area -->
+    <section class="banner-area" id="home">
+        <div class="container">
+            <div class="row fullscreen d-flex align-items-center justify-content-start">
+                <div class="banner-content col-lg-7">
+                    <br />
+                    <h4 style="font-family:Playball" class="text-white">Khơi Dậy Tâm Hồn</h4>
+                    <h1 style="font-family:Playball" class="animated jackInTheBox">Cà Phê Nhé !</h1>
+                    <span class="mycolor" style="color:white;font-size:20px;font-style:italic;font-family:'Times New Roman', Times, serif">
+                        <a href="@Url.Action("HienThiLichSuMuaHang", "NguoiDung", new { id = Session["MaKH"] }) ">
+                            @Session["TenKH"]
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+    @RenderBody();   
+    <script src="~/Vendor/js/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="~/Vendor/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+    <script src="~/Vendor/js/easing.min.js"></script>
+    <script src="~/Vendor/js/hoverIntent.js"></script>
+    <script src="~/Vendor/js/superfish.min.js"></script>
+    <script src="~/Vendor/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/Vendor/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Vendor/js/owl.carousel.min.js"></script>
+    <script src="~/Vendor/js/jquery.sticky.js"></script>
+    <script src="~/Vendor/js/jquery.nice-select.min.js"></script>
+    <script src="~/Vendor/js/parallax.min.js"></script>
+    <script src="~/Vendor/js/waypoints.min.js"></script>
+    <script src="~/Vendor/js/jquery.counterup.min.js"></script>
+    <script src="~/Vendor/js/mail-script.js"></script>
+    <script src="~/Vendor/js/main.js"></script>
+    }
+</body>
+</html>

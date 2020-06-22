@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Đăng Nhập";
+    Layout = "~/Views/Shared/_LayoutGioHang.cshtml";
+}
+<h4 style="color:red; text-align:center">@ViewBag.ThongBao </h4>
+<h3 style="text-align:center; color:black;font-size:40px; color:white;font-weight:bold;font-family:'UVN Saigon'"> Đăng Nhập</h3>
+<br />
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div class="container wrap" style="font-family:'UVN Saigon'">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-2 text-white text-center" style="font-weight:bold;font-size:20px">Email:</label>
+                <div class="col-sm-12">
+                    <input type="email" class="form-control" style="text-align:center;" name="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2 text-white text-center" style="font-weight:bold;font-size:20px">Mật Khẩu Z9TheCoffee:</label>
+                <div class="col-sm-12">
+                    <input type="password" class="form-control" style="text-align:center;" name="MatKhau">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-12">
+                    <button type="submit" class="btn primary-btn" style="margin:0 auto;display: flex">Đăng Nhập</button>
+                </div>
+            </div>
+        </form>
+    </div><br />
+        <div style="font-style:italic;font-size:20px; text-align:center;color:white">Nếu chưa có tài khoản ?<br /><br /><span class="mycolor"><a href="@Url.Action("DangKi", "NguoiDung")">Đăng Kí Ngay</a></span> </div> <br /><br />
+}

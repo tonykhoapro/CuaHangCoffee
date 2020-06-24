@@ -43,7 +43,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <span class="sr-only">Toggle navigation</span>
                 </a>
                 <!-- Navbar Right Menu -->
-                <div class="navbar-custom-menu">
+                @*<div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <!-- User Account Menu -->
                         <li class="dropdown user user-menu">
@@ -63,13 +63,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="text-center">
-                                        <a href="@Url.Action("DangNhap", "QuanLy_Z9TheCoffee")" class="btn btn-default btn-flat">Đăng Xuất</a>
+                                        <a href="@Url.Action("DangXuat", "QuanLy_Z9TheCoffee")" class="btn btn-default btn-flat">Đăng Xuất</a>
                                     </div>
                                 </li>
                             </ul>
                         </li>
                     </ul>
-                </div>
+                </div>*@
             </nav>
         </header>
         <!-- Left side column. contains the logo and sidebar -->
@@ -86,7 +86,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                     <div class="pull-left info">
                         @Session["TenAdmin"]<br /> <br />
-                        <span style="text-align:center;color:red"><a href="@Url.Action("DangNhap", "QuanLy_Z9TheCoffee")">Đăng Xuất</a>      </span>
+                        <span style="text-align:center;color:red"><a href="@Url.Action("DangXuat", "QuanLy_Z9TheCoffee")">Đăng Xuất</a>      </span>
                     </div>
                 </div>
 

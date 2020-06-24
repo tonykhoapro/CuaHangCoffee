@@ -92,6 +92,7 @@ namespace Z9TheCoffee.Controllers
             { //Lay ra doi tuong sach theo ma                                              
                 ViewBag.MaLoai = new SelectList(data.LoaiDoUongs.Where(a => a.TrangThai == true).ToList(), "MaLoai", "TenLoai");
                 ChiTietDoUong du = data.ChiTietDoUongs.SingleOrDefault(n => n.MaDoUong == id);
+                du.NgayCapNhat = DateTime.Today;
                 return View(du);
             }
         }
@@ -116,17 +117,25 @@ namespace Z9TheCoffee.Controllers
                         du.TenDoUong = collection["TenDoUong"];
                         du.GiaBan = Convert.ToDecimal(collection["GiaBan"]);
                         //Luu ten fie, luu y bo sung thu vien using System.IO;
-                        var fileName = Path.GetFileName(fileUpload.FileName);
-                        //Luu duong dan cua file
-                        var path = Path.Combine(Server.MapPath("~/HinhSanPham"), fileName);                                                
-                        //Luu hinh anh vao duong dan
-                        fileUpload.SaveAs(path);
-                        du.AnhBia = fileName;
+                        if (fileUpload != null)
+                        {
+                            var fileName = Path.GetFileName(fileUpload.FileName);
+                            //Luu duong dan cua file
+                            var path = Path.Combine(Server.MapPath("~/HinhSanPham"), fileName);
+                            //Luu hinh anh vao duong dan
+                            fileUpload.SaveAs(path);
+                            du.AnhBia = fileName;
+                        }
+                        //else
+                        //{
+                        //    du.AnhBia = collection["AnhBia"];
+                        //}
+                        
                         du.TrangThai = Convert.ToBoolean(collection["TrangThai"]);
                         //Luu vao CSDL                             
                         data.SubmitChanges();
                     }
-                    catch { ViewBag.Loi = "Vui lòng kiểm tra đầy đủ thông tin"; }
+                    catch { ViewBag.Loi = "Vui lòng kiểm tra đầy đủ thông tin"; return null; }
                 }
                 return RedirectToAction("Menu", "QuanLy_Z9TheCoffee");
             }

@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -393,6 +394,10 @@
     <Content Include="Views\QuanLy_Z9TheCoffee\CapNhatMenu.cshtml" />
     <Content Include="Views\Shared\_LayoutQuanLy.cshtml" />
     <Content Include="Views\QuanLy_Z9TheCoffee\ThemMoiMenu.cshtml" />
+    <Content Include="Views\Shared\View.cshtml" />
+    <Content Include="Views\QuanLy_Z9TheCoffee\ThemMoiChiNhanh.cshtml" />
+    <Content Include="Views\QuanLy_Z9TheCoffee\SuaThongTinChiNhanh.cshtml" />
+    <Content Include="Views\QuanLy_Z9TheCoffee\DanhSachChiNhanh.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -16,3 +16,8 @@ D:\Projects\38_Release\Z9TheCoffee\Common\obj\Debug\Common.csprojAssemblyReferen
 D:\Projects\38_Release\Z9TheCoffee\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 D:\Projects\38_Release\Z9TheCoffee\Common\obj\Debug\Common.dll
 D:\Projects\38_Release\Z9TheCoffee\Common\obj\Debug\Common.pdb
+D:\.NET MVC\CoffeShop\CuaHangCoffee\Z9TheCoffee\Common\bin\Debug\Common.dll
+D:\.NET MVC\CoffeShop\CuaHangCoffee\Z9TheCoffee\Common\bin\Debug\Common.pdb
+D:\.NET MVC\CoffeShop\CuaHangCoffee\Z9TheCoffee\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+D:\.NET MVC\CoffeShop\CuaHangCoffee\Z9TheCoffee\Common\obj\Debug\Common.dll
+D:\.NET MVC\CoffeShop\CuaHangCoffee\Z9TheCoffee\Common\obj\Debug\Common.pdb

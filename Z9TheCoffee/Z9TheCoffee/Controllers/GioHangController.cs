@@ -176,17 +176,17 @@ namespace Z9TheCoffee.Controllers
                 data.SubmitChanges();
                 Session["Giohang"] = null;
 
-                //string content = System.IO.File.ReadAllText(Server.MapPath("~/SendMail/noidung.html"));
-                //content = content.Replace("{{TenKH}}", kh.TenKH);
-                //content = content.Replace("{{DienThoai_KH}}", ddh.DienThoai_KH);
-                //content = content.Replace("{{Email}}", kh.Email);
-                //content = content.Replace("{{QuanGiao}}", ddh.QuanGiao.TenQuan);
-                //content = content.Replace("{{DiaChiGiao}}", ddh.DiaChiGiao);
-                //content = content.Replace("{{TongSoLuong}}", Convert.ToString(tongsoluong));
-                //content = content.Replace("{{TongTien}}", String.Format("{0:0,0}", tongtien));
-                //var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
-                //new MailHelper().SendMail(kh.Email, "Xác Nhận Đơn Hàng từ Z9TheCoffee", content);
-                //new MailHelper().SendMail(toEmail, "Đơn hàng mới từ Z9TheCoffee", content);
+                string content = System.IO.File.ReadAllText(Server.MapPath("~/SendMail/noidung.html"));
+                content = content.Replace("{{TenKH}}", kh.TenKH);
+                content = content.Replace("{{DienThoai_KH}}", ddh.DienThoai_KH);
+                content = content.Replace("{{Email}}", kh.Email);
+                content = content.Replace("{{QuanGiao}}", ddh.QuanGiao.TenQuan);
+                content = content.Replace("{{DiaChiGiao}}", ddh.DiaChiGiao);
+                content = content.Replace("{{TongSoLuong}}", Convert.ToString(tongsoluong));
+                content = content.Replace("{{TongTien}}", String.Format("{0:0,0}", tongtien));
+                var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+                new MailHelper().SendMail(kh.Email, "Xác Nhận Đơn Hàng từ Z9TheCoffee", content);
+                new MailHelper().SendMail(toEmail, "Đơn hàng mới từ Z9TheCoffee", content);
                 return RedirectToAction("XacNhanDonHang", "GioHang");
             }
             catch

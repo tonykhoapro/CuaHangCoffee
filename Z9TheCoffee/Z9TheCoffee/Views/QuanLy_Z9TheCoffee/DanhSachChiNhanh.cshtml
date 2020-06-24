@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Z9TheCoffee.Models.ChiNhanh>
+
+@{
+    ViewBag.Title = "DanhSachChiNhanh";
+    Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
+}
+
+<h2>DanhSachChiNhanh</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenChiNhanh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenChiNhanh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrangThai)
+        </td>
+        <td>
+            @Html.ActionLink("Chỉnh Sửa", "SuaThongTinChiNhanh", new { id=item.MaChiNhanh })
+        </td>
+    </tr>
+}
+
+</table>

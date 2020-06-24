@@ -82,6 +82,15 @@ namespace Z9TheCoffee.Controllers
             int pageSize = 20;
             return View(laydanhsach.ToPagedList(pageNumber, pageSize));
         }
+        public ActionResult DanhSachChiNhanh()
+        {
+            if (Session["TenAdmin"] == null || Session["TenAdmin"].ToString() == "")
+            {
+                return RedirectToAction("Index", "QuanLy_Z9TheCoffee");
+            }
+            List<ChiNhanh> chiNhanhs = data.ChiNhanhs.Where(v => v.TrangThai != false).ToList();
+            return View(chiNhanhs);
+        }
         public ActionResult CapNhatMenu(int id)
         {
             if (Session["TenAdmin"] == null || Session["TenAdmin"].ToString() == "")
@@ -94,6 +103,47 @@ namespace Z9TheCoffee.Controllers
                 ChiTietDoUong du = data.ChiTietDoUongs.SingleOrDefault(n => n.MaDoUong == id);
                 return View(du);
             }
+        }
+        public ActionResult SuaThongTinChiNhanh(int id)
+        {
+            if (Session["TenAdmin"] == null || Session["TenAdmin"].ToString() == "")
+            {
+                return RedirectToAction("Index", "QuanLy_Z9TheCoffee");
+            }
+            else
+            {
+                ViewBag.MaLoai = new SelectList(data.ChiNhanhs.Where(a => a.TrangThai == true)).ToList();
+                ChiNhanh chiNhanh = data.ChiNhanhs.SingleOrDefault(n => n.MaChiNhanh == id);
+                return View(chiNhanh);
+            }
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SuaThongTinChiNhanh(FormCollection collection)
+        {
+            if (Session["TenAdmin"] == null || Session["TenAdmin"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "QuanLy_Z9TheCoffee");
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        ChiNhanh chiNhanh = data.ChiNhanhs.Where(a => a.MaChiNhanh == Convert.ToInt32(collection["MaChiNhanh"])).FirstOrDefault();
+                        chiNhanh.TenChiNhanh = Convert.ToString(collection["TenChiNhanh"]);
+                        chiNhanh.TrangThai = Convert.ToBoolean(collection["TrangThai"]);
+                        //data.ChiNhanhs.
+                        data.SubmitChanges();
+                    }
+
+                    catch { ViewBag.Loi = "Vui lòng kiểm tra đầy đủ thông tin"; }
+
+
+                }
+            }
+            return RedirectToAction("Menu", "QuanLy_Z9TheCoffee");
         }
         [HttpPost]
         [ValidateInput(false)]
@@ -139,6 +189,35 @@ namespace Z9TheCoffee.Controllers
             }
             ViewBag.MaLoai = new SelectList(data.LoaiDoUongs.Where(a => a.TrangThai == true).ToList(), "MaLoai", "TenLoai");
             return View();
+        }
+        public ActionResult ThemMoiChiNhanh()
+        {
+            if (Session["TenAdmin"] == null || Session["TenAdmin"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "QuanLy_Z9TheCoffee");
+            }
+            ViewBag.MaLoai = new SelectList(data.LoaiDoUongs.Where(a => a.TrangThai == true).ToList(), "MaLoai", "TenLoai");
+            return View();
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult ThemMoiChiNhanh(FormCollection collection,ChiNhanh chiNhanh)
+        {
+            if (Session["TenAdmin"] == null || Session["TenAdmin"].ToString() == "")
+            {
+                return RedirectToAction("DangNhap", "QuanLy_Z9TheCoffee");
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    chiNhanh.TenChiNhanh = Convert.ToString(collection["TenChiNhanh"]);
+                    chiNhanh.TrangThai = Convert.ToBoolean(collection["TrangThai"]);
+                    data.ChiNhanhs.InsertOnSubmit(chiNhanh);
+                    data.SubmitChanges();
+                }
+            }
+            return RedirectToAction("Menu", "QuanLy_Z9TheCoffee");
         }
         [HttpPost]
         [ValidateInput(false)]

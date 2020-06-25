@@ -144,7 +144,7 @@ namespace Z9TheCoffee.Controllers
 
                 }
             }
-            return RedirectToAction("Menu", "QuanLy_Z9TheCoffee");
+            return RedirectToAction("DanhSachChiNhanh", "QuanLy_Z9TheCoffee");
         }
         [HttpPost]
         [ValidateInput(false)]
@@ -226,7 +226,7 @@ namespace Z9TheCoffee.Controllers
                     data.SubmitChanges();
                 }
             }
-            return RedirectToAction("Menu", "QuanLy_Z9TheCoffee");
+            return RedirectToAction("DanhSachChiNhanh", "QuanLy_Z9TheCoffee");
         }
         [HttpPost]
         [ValidateInput(false)]
